@@ -1,0 +1,10 @@
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmY1ZDI2YjI1ZDM2ZDBjYWU3OWIzOCIsInJvbGUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNzQ3OTM0ODQ3LCJleHAiOjE3NDc5Mzg0NDd9.L9qbSGPWfxxmxwfcyv6NrSYG_TaubRRhwJ9426eFJ2I",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmY1ZDI2YjI1ZDM2ZDBjYWU3OWIzOCIsImlhdCI6MTc0NzkzNDg0NywiZXhwIjoxNzQ4NTM5NjQ3fQ.qNaSl2354MwZ5dzEmrVYcf1f6W1AHY2koa4ZvYN79Ns",
+  "user": {
+    "id": "682f5d26b25d36d0cae79b38",
+    "name": "marcus",
+    "email": "marcus@lyz.ai",
+    "role": "superadmin"
+  }
+}
