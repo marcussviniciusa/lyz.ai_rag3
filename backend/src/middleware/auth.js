@@ -58,16 +58,10 @@ exports.authenticate = async (req, res, next) => {
   } catch (error) {
     logger.error('Erro de autenticau00e7u00e3o:', error);
     
-    if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
-      return res.status(401).json({
-        success: false,
-        message: 'Token invu00e1lido ou expirado.'
-      });
-    }
-    
-    return res.status(500).json({
+    // Sempre retornar 401 para problemas relacionados a token
+    return res.status(401).json({
       success: false,
-      message: 'Erro interno do servidor.'
+      message: error.name === 'TokenExpiredError' ? 'Token invu00e1lido ou expirado.' : 'Token invu00e1lido.'
     });
   }
 };

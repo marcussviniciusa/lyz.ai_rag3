@@ -17,7 +17,7 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 // Páginas do dashboard
 import Dashboard from './pages/dashboard/Dashboard';
 import PlansList from './pages/plans/PlansList';
-import NewPlan from './pages/plans/NewPlan';
+import NewPlan from './pages/plans/NewPlanSimple';
 import PlanDetails from './pages/plans/PlanDetails';
 
 // Componentes de layout

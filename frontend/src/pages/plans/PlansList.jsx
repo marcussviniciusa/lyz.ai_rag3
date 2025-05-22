@@ -19,8 +19,17 @@ const PlansList = () => {
     const fetchPlans = async () => {
       try {
         setLoading(true);
-        const response = await PlanService.getAllPlans();
-        setPlans(response.data);
+        const response = await PlanService.getPlans();
+        // Garantir que estamos tratando um array
+        if (response.data && response.data.data && Array.isArray(response.data.data.plans)) {
+          setPlans(response.data.data.plans);
+        } else if (response.data && Array.isArray(response.data)) {
+          setPlans(response.data);
+        } else {
+          // Fallback para um array vazio se não conseguirmos extrair os planos
+          console.warn('Formato de resposta inesperado:', response.data);
+          setPlans([]);
+        }
         setError('');
       } catch (err) {
         console.error('Erro ao buscar planos:', err);
@@ -43,7 +52,7 @@ const PlansList = () => {
 
   const filteredPlans = plans.filter(plan => 
     plan.patient?.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    plan.id?.toLowerCase().includes(searchTerm.toLowerCase())
+    plan._id?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const getStatusColor = (status) => {
@@ -124,7 +133,7 @@ const PlansList = () => {
       ) : (
         <Grid container spacing={3}>
           {filteredPlans.map((plan) => (
-            <Grid item xs={12} sm={6} md={4} key={plan.id}>
+            <Grid item xs={12} sm={6} md={4} key={plan._id || `plan-${Math.random()}`}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -175,7 +184,7 @@ const PlansList = () => {
                     <Button 
                       size="small" 
                       color="primary" 
-                      onClick={() => handleViewPlan(plan.id)}
+                      onClick={() => handleViewPlan(plan._id)}
                       fullWidth
                     >
                       Ver Detalhes

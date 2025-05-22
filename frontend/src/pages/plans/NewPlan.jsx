@@ -28,7 +28,7 @@ const NewPlan = () => {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({
-    patient: { name: '', age: '', email: '', phone: '' },
+    patient: { name: '', age: '', email: '', phone: '', height: '', weight: '', birthdate: '' },
     symptoms: [],
     healthHistory: { conditions: [], medications: [], surgeries: [], allergies: [] },
     lifestyle: { diet: '', exercise: '', sleep: '', stress: '' }
@@ -146,15 +146,23 @@ const NewPlan = () => {
           ))}
         </Stepper>
         
-        <motion.div
-          key={activeStep}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.3 }}
-        >
-          {getStepContent(activeStep)}
-        </motion.div>
+        <Box>
+          {/* Removendo temporariamente o motion para evitar problemas de renderizau00e7u00e3o */}
+          <div key={activeStep}>
+            {(() => {
+              try {
+                return getStepContent(activeStep);
+              } catch (error) {
+                console.error('Erro ao renderizar etapa do formulu00e1rio:', error);
+                return (
+                  <Alert severity="error">
+                    Erro ao carregar esta etapa do formulu00e1rio. Detalhes: {error.message}
+                  </Alert>
+                );
+              }
+            })()}
+          </div>
+        </Box>
         
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
           <Button

@@ -55,6 +55,15 @@ class PlanService {
   }
 
   /**
+   * Alias para getPlan - mantido para compatibilidade com componentes existentes
+   * @param {string} id - ID do plano
+   * @returns {Promise} Resposta da API com dados do plano
+   */
+  getPlanById(id) {
+    return this.getPlan(id);
+  }
+
+  /**
    * Criar um novo plano
    * @param {Object} planData - Dados iniciais do plano
    * @returns {Promise} Resposta da API com plano criado
@@ -91,6 +100,14 @@ class PlanService {
       `${API_URL}/plans/${id}`,
       { headers: authHeader() }
     );
+  }
+  
+  /**
+   * Obter estatu00edsticas dos planos (total, conclu00eddos, em andamento, pacientes)
+   * @returns {Promise} Resposta da API com estatu00edsticas
+   */
+  getStats() {
+    return axios.get(`${API_URL}/plans/stats`, { headers: authHeader() });
   }
   
   /**

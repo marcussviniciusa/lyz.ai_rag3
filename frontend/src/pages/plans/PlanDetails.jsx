@@ -134,8 +134,13 @@ const PlanDetails = () => {
       }
     };
 
-    if (id) {
+    // Verificau00e7u00e3o mais robusta para garantir que o ID u00e9 vu00e1lido
+    if (id && id !== 'undefined' && id !== 'null' && id.trim() !== '') {
       fetchPlan();
+    } else {
+      // Se o ID nu00e3o for vu00e1lido, definir erro e parar o carregamento
+      setError('ID do plano nu00e3o fornecido ou invu00e1lido. Volte para a lista de planos e tente novamente.');
+      setLoading(false);
     }
   }, [id]);
 
@@ -209,7 +214,18 @@ const PlanDetails = () => {
           <CircularProgress />
         </Box>
       ) : error ? (
-        <Alert severity="error" sx={{ my: 4 }}>{error}</Alert>
+        <Container maxWidth="md" sx={{ mt: 4 }}>
+          <Alert severity="error" sx={{ mb: 3 }}>{error}</Alert>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<ArrowBackIcon />}
+            onClick={() => navigate('/plans')}
+            sx={{ mt: 2 }}
+          >
+            Voltar para Lista de Planos
+          </Button>
+        </Container>
       ) : plan ? (
         <motion.div
           initial={{ opacity: 0, y: 20 }}

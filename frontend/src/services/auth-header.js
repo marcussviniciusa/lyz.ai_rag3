@@ -4,11 +4,12 @@
  * @returns {Object} Cabeçalho de autorização
  */
 export default function authHeader() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  // Obter o token de acesso diretamente do localStorage
+  const accessToken = localStorage.getItem('accessToken');
 
-  if (user && user.token) {
+  if (accessToken) {
     // Para API Express/Node.js
-    return { Authorization: `Bearer ${user.token}` };
+    return { Authorization: `Bearer ${accessToken}` };
   } else {
     return {};
   }

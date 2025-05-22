@@ -1,7 +1,9 @@
 import React from 'react';
 import { Box, Grid, TextField, Typography } from '@mui/material';
 
+// Versão simplificada sem otimizações complexas
 const PatientInfoForm = ({ data, onChange }) => {
+  // Função de manipulação de mudanças simples
   const handleChange = (e) => {
     const { name, value } = e.target;
     onChange({ ...data, [name]: value });
@@ -53,28 +55,7 @@ const PatientInfoForm = ({ data, onChange }) => {
             InputLabelProps={{ shrink: true }}
           />
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="email"
-            name="email"
-            label="Email"
-            fullWidth
-            value={data.email || ''}
-            onChange={handleChange}
-            type="email"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="phone"
-            name="phone"
-            label="Telefone"
-            fullWidth
-            value={data.phone || ''}
-            onChange={handleChange}
-          />
-        </Grid>
+        {/* Campos de email e telefone removidos conforme solicitado */}
         <Grid item xs={12} sm={6}>
           <TextField
             id="height"
